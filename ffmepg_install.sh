@@ -89,8 +89,9 @@ make clean
 
 ######## Finally install ffmpeg #########
 cd ~/ffmpeg_sources
-git clone https://github.com/FFmpeg/FFmpeg.git ffmepg
+git clone --depth=1 --no-single-branch https://github.com/FFmpeg/FFmpeg.git
 cd ffmpeg
+git checkout `git tag --list | tail -1` -b latest
 PATH="$HOME/bin:$PATH" PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./configure \
   --prefix="$HOME/ffmpeg_build" \
   --pkg-config-flags="--static" \
