@@ -4,8 +4,10 @@ sudo apt-get update
 sudo apt-get -y install autoconf automake build-essential libass-dev libfreetype6-dev \
     libsdl1.2-dev libtheora-dev libtool libva-dev libvdpau-dev libvorbis-dev libxcb1-dev libxcb-shm0-dev \
     libxcb-xfixes0-dev pkg-config texinfo zlib1g-dev
+
 # Create a dir where the rest of the sources will live
 mkdir ~/ffmpeg_sources
+
 ######### yasm ##########
 sudo apt-get -y install yasm
 # If your version of yasm is < 1.2.0,
@@ -89,8 +91,9 @@ make clean
 
 ######## Finally install ffmpeg #########
 cd ~/ffmpeg_sources
-git clone --depth=1 --no-single-branch https://github.com/FFmpeg/FFmpeg.git
-cd FFmpeg
+wget http://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2
+tar xjvf ffmpeg-snapshot.tar.bz2
+cd ffmpeg
 PATH="$HOME/bin:$PATH" PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./configure \
   --prefix="$HOME/ffmpeg_build" \
   --pkg-config-flags="--static" \
